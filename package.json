@@ -1,11 +1,19 @@
 {
     "name": "@codaworks/react-glow",
-    "version": "1.0.0",
-    "description": "Add a glowing effect for any React component",
-    "private": false,
-    "scripts": {
-        "rollup": "rollup -c"
+    "author": "Mordechai Meisels",
+    "version": "1.0.1",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "module": "dist/react-glow.esm.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./tailwind": "./src/tailwind.js"
     },
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/codaworks/react-glow.git"
@@ -14,28 +22,60 @@
         "react",
         "glow"
     ],
-    "author": "Mordechai Meisels",
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/codaworks/react-glow/issues"
     },
     "homepage": "https://github.com/codaworks/react-glow#readme",
-    "peerDependencies": {
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "tailwindcss": "^3.3.0"
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "tsdx test --passWithNoTests",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "analyze": "size-limit --why"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^25.0.4",
-        "@rollup/plugin-node-resolve": "^15.2.1",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "rollup": "^3.29.3",
-        "tailwindcss": "^3.3.0"
+        "@size-limit/preset-small-lib": "^9.0.0",
+        "@types/react": "^18.2.23",
+        "@types/react-dom": "^18.2.8",
+        "@types/resize-observer-browser": "^0.1.8",
+        "husky": "^8.0.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rollup-plugin-postcss": "^4.0.2",
+        "size-limit": "^9.0.0",
+        "tailwindcss": "^3.3.3",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.6.2",
+        "typescript": "^3.9.10"
     },
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "files": [
-        "dist"
+    "peerDependencies": {
+        "react": ">=16",
+        "tailwindcss": ">=3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "tsdx lint"
+        }
+    },
+    "prettier": {
+        "printWidth": 80,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+    },
+    "size-limit": [
+        {
+            "path": "dist/react-glow.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/react-glow.esm.js",
+            "limit": "10 KB"
+        }
     ]
 }
