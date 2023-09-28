@@ -1,5 +1,4 @@
 import React, { CSSProperties, ReactNode, useEffect, useRef } from 'react'
-import './glow.css'
 
 export const GlowCapture = ({ className = '', size = 400, ...rest }) => {
     const element = useRef<HTMLDivElement>(null)
@@ -31,7 +30,10 @@ export const GlowCapture = ({ className = '', size = 400, ...rest }) => {
 
     return <div ref={element}
         className={`glow-capture ${className}`}
-        style={{ '--glow-size': `${size}px` } as CSSProperties}
+        style={{
+            position: 'relative',
+            '--glow-size': `${size}px`
+        } as CSSProperties}
         {...rest} />
 }
 
@@ -67,8 +69,13 @@ export const Glow = (
         return () => observer.disconnect()
     }, [])
 
-    return <div ref={element} className='glow' {...rest}>
-        <div className={className} style={style} {...rest}>
+    return <div ref={element} className='glow' style={{ display: 'grid' }} {...rest}>
+        <div className={className}
+            style={{
+                ...style,
+                gridArea: '1/1/1/1'
+            }}
+            {...rest}>
             {children}
         </div>
         {/* @ts-ignore */}
@@ -76,6 +83,8 @@ export const Glow = (
             style={{
                 ...style,
                 '--glow-color': color,
+                gridArea: '1/1/1/1',
+                pointerEvents: 'none',
                 mask: debug ? undefined : mask,
                 WebkitMask: debug ? undefined : mask
             } as CSSProperties}
