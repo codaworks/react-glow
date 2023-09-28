@@ -31,7 +31,7 @@ Wrap any number of `<Glow>` components in a `<GlowCapture>` which will be used t
 </GlowCapture>
 ```
 
-Every child of `<Glow>` can style themself how to look when glowing. You might choose to leave some children unchanged, or highlight them with the `glow:` variant style.
+Children of `<Glow>` can style themselves how to look when glowing. You might choose to leave some children unchanged, or highlight them with the `glow:` variant style.
 
 The value of `color` will be available as a CSS variable `--glow-color`, as well as the Tailwind `glow` color. 
 You can pass any valid CSS color, including `hsl()` values etc.
@@ -73,7 +73,7 @@ You can style the glow effect with vanilla CSS:
   color: black;
 }
 
-.glow-capture .glow-mask .glowable-text {
+[glow] .glowable-text {
   color: var(--glow-color);
 }
 ```

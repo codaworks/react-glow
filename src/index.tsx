@@ -71,7 +71,8 @@ export const Glow = (
         <div className={className} style={style} {...rest}>
             {children}
         </div>
-        <div className={`glow-mask ${className ? className : ''}`}
+        {/* @ts-ignore */}
+        <div className={`glow-mask ${className ? className : ''}`} glow='true'
             style={{
                 ...style,
                 '--glow-color': color,

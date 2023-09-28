@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(({ addVariant }) => {
-    addVariant('glow', ':merge(.glow-capture .glow-mask) &')
+    addVariant('glow', '.glow-capture [glow] &')
 }, {
     theme: {
         extend: {
