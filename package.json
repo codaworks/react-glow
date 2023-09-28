@@ -2,7 +2,7 @@
     "name": "@codaworks/react-glow",
     "description": "Add a mouse-tracing glow effect to React components",
     "author": "Mordechai Meisels",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "main": "dist/index.js",
     "module": "dist/react-glow.esm.js",
