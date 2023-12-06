@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef } from 'react'
 
 export const GlowCapture = ({ className = '', size = 400, ...rest }) => {
     const element = useRef<HTMLDivElement>(null)
@@ -39,13 +39,13 @@ export const GlowCapture = ({ className = '', size = 400, ...rest }) => {
 
 
 const mask = `
-radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -999px) - var(--glow-left, 0px))
-calc(var(--glow-y, -999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%)
+radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%)
 `
 
+
 export const Glow = (
-    { className, style, children, color = '#f50057', debug, ...rest }:
-        { className: string, style: CSSProperties, children: ReactNode, color: string, debug: boolean }) => {
+    { className = '', style = {}, children = undefined, color = '#f50057', debug = false, ...rest }) => {
     const element = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -69,7 +69,7 @@ export const Glow = (
         return () => observer.disconnect()
     }, [])
 
-    return <div ref={element} className='glow' style={{ display: 'grid' }} {...rest}>
+    return <div ref={element} className='glow' style={{ display: 'grid' }}>
         <div className={className}
             style={{
                 ...style,
@@ -78,8 +78,9 @@ export const Glow = (
             {...rest}>
             {children}
         </div>
-        {/* @ts-ignore */}
-        <div className={`glow-mask ${className ? className : ''}`} glow='true'
+        <div className={`glow-mask ${className}`}
+            // @ts-ignore
+            glow='true'
             style={{
                 ...style,
                 '--glow-color': color,
