@@ -1,6 +1,13 @@
 import React, { CSSProperties, useEffect, useRef } from 'react'
+import { GlowCaptureProps, GlowProps } from './index.types'
 
-export const GlowCapture = ({ className = '', size = 400, ...rest }) => {
+export const GlowCapture = (props: GlowCaptureProps) => {
+    const {
+        className = '',
+        size = 400,
+        ...rest
+    } = props
+
     const element = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -44,8 +51,18 @@ calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50
 `
 
 
-export const Glow = (
-    { className = '', style = {}, children = undefined, color = '#f50057', debug = false, ...rest }) => {
+export const Glow = (props: GlowProps) => {
+
+    const {
+        className = '',
+        style,
+        children,
+        color = '#f50057',
+        debug = false,
+        ...rest
+    } = props
+
+
     const element = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
