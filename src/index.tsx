@@ -18,8 +18,8 @@ export const GlowCapture = (props: GlowCaptureProps) => {
 
                     const bounds = element.current.getBoundingClientRect();
                     
-                    let x = e.clientX - bounds.left;
-                    let y = e.clientY - bounds.top;
+                    const x = e.clientX - bounds.left;
+                    const y = e.clientY - bounds.top;
 
                     element.current.style.setProperty('--glow-x', `${x}px`)
                     element.current.style.setProperty('--glow-y', `${y}px`)
