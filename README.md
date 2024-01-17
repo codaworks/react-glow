@@ -78,5 +78,33 @@ You can style the glow effect with vanilla CSS:
 }
 ```
 
+## How does it work?
+
+The `<Glow>` component clones the children tree. The cloned tree is then stacked on top of the original tree.
+
+The overlay tree is transparent, and only we only reveal parts using a CSS radial gradient mask. The mask position is updated 
+by tracking the mouse position.
+When you use the `glow:` variant or `[glow]` attribute selector, it only targets the overlay. 
+
+In order to not block mouse events, the overlay is set to `pointer-events: none`.
+
+We use the `<GlowCapture>` to track the mouse; the `<Glow>` itself also keeps track of its position inside the `<GlowCapture>`.
+
+### Best practices 
+
+![diagram](./media/diagram.png)
+
+The fact that we clone the children tree has some implications that is important to keep in mind:
+
+- `<Glow>` children should never have side effects. Since we duplicate the children, the effects will run twice. 
+- Keep the `<Glow>` children small. Use a separate `<Glow>` for each logical set of children (such as a single card).
+- Don't apply layout styles to `glow:`. Keep the glow styles to just visuals, such as colors, opacity, and a slight scale might also work sometimes.
+- Use callback refs: When you pass a ref to a glow child, the cloned version will "steal" the ref. Use a callback ref, and check if it is already set before assigning.
+- It might be challenging to get it to correctly work with forms, especially if you have required fields. The cloned fields will also be marked as required and failing the validation.
+- Use a single `<GlowCapture>` for a group of related glows. This allows you to get an overflowing glow effect when the mouse is between 2 glows.
+- Apply some padding between the capture and the children, to show the glow even when you leave the `<Glow>` instead of abruptly cutting off the effect.
+- Avoid layout changes that resizes the `<Glow>`. It might become out of sync with its tracked position inside the `<GlowCapture>`. We use a `ResizeObserver` on the `<GlowCapture>`, so it will only stay synced if the capture itself is also resized (if you have a better solution, please submit a PR).
+
+
 ## Attribution
 Inspired by [this tweet](https://twitter.com/codepen/status/1696297659663888490).
