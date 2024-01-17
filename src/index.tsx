@@ -14,12 +14,13 @@ export const GlowCapture = (props: GlowCaptureProps) => {
         const move = (e: PointerEvent) => {
             if (e.pointerType === 'mouse') {
                 requestAnimationFrame(() => {
-                    if (!element.current) return;
+                    if (!element.current)
+                        return
 
-                    const bounds = element.current.getBoundingClientRect();
-                    
-                    const x = e.clientX - bounds.left;
-                    const y = e.clientY - bounds.top;
+                    const bounds = element.current.getBoundingClientRect()
+
+                    const x = e.clientX - bounds.left
+                    const y = e.clientY - bounds.top
 
                     element.current.style.setProperty('--glow-x', `${x}px`)
                     element.current.style.setProperty('--glow-y', `${y}px`)
