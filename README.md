@@ -82,7 +82,7 @@ You can style the glow effect with vanilla CSS:
 
 The `<Glow>` component clones the children tree. The cloned tree is then stacked on top of the original tree.
 
-The overlay tree is transparent, and only we only reveal parts using a CSS radial gradient mask. The mask position is updated 
+The overlay tree is transparent, and we only reveal parts using a CSS radial gradient mask. The mask position is updated 
 by tracking the mouse position.
 When you use the `glow:` variant or `[glow]` attribute selector, it only targets the overlay. 
 
@@ -103,7 +103,6 @@ The fact that we clone the children tree has some implications that is important
 - It might be challenging to get it to correctly work with forms, especially if you have required fields. The cloned fields will also be marked as required and failing the validation.
 - Use a single `<GlowCapture>` for a group of related glows. This allows you to get an overflowing glow effect when the mouse is between 2 glows.
 - Apply some padding between the capture and the children, to show the glow even when you leave the `<Glow>` instead of abruptly cutting off the effect.
-- Avoid layout changes that resizes the `<Glow>`. It might become out of sync with its tracked position inside the `<GlowCapture>`. We use a `ResizeObserver` on the `<GlowCapture>`, so it will only stay synced if the capture itself is also resized (if you have a better solution, please submit a PR).
 
 
 ## Attribution
