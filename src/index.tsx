@@ -1,5 +1,8 @@
-import React, { CSSProperties, useEffect, useRef } from 'react'
-import { GlowCaptureProps, GlowProps } from './index.types'
+import React, { CSSProperties, ComponentPropsWithoutRef, useEffect, useRef } from 'react'
+
+interface GlowCaptureProps extends ComponentPropsWithoutRef<'div'> {
+    size?: number
+}
 
 export const GlowCapture = (props: GlowCaptureProps) => {
     const {
@@ -56,6 +59,10 @@ radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px
 calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%)
 `
 
+interface GlowProps extends ComponentPropsWithoutRef<'div'> {
+    color?: string,
+    debug?: boolean
+}
 
 export const Glow = (props: GlowProps) => {
 
